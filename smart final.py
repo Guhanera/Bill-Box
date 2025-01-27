@@ -24,10 +24,10 @@ def buzzing():
 i2c = I2C(1, sda=Pin(18), scl=Pin(19), freq=40000)
 I2C_ADDR = i2c.scan()[0]
 lcd = I2cLcd(i2c, I2C_ADDR, 2, 16)
-firebase.setURL("https://menu-items-9007f-default-rtdb.firebaseio.com/")
+firebase.setURL("")
 
-ssid = 'Redmi Note 11S'
-password = '12345678'
+ssid = ''
+password = ''
  
 
 def connect_wifi(ssid, password):
@@ -76,10 +76,10 @@ def listToString(s):
         str1 += ele
     return str1
 
-account_sid = 'ACb59bab8ef6d2c5143d8dc74518e6497a'
-auth_token = '80054f5462c9c0b67cf433f7cc33b806'
-recipient_num = '+919994058429'
-sender_num = '+12018171859'
+account_sid = ''
+auth_token = ''
+recipient_num = ''
+sender_num = ''
 
 def send_sms(recipient, sender,
              message, auth_token, account_sid):
@@ -172,11 +172,11 @@ def main():
     s=[]
     phone=0
     counter=0
-    account_sid = 'ACb59bab8ef6d2c5143d8dc74518e6497a'
-    auth_token = '80054f5462c9c0b67cf433f7cc33b806'
-    recipient_num = '+919994058429'
-    sender_num = '+12018171859'
-    firebase.setURL("https://menu-items-9007f-default-rtdb.firebaseio.com/")
+    account_sid = ''
+    auth_token = ''
+    recipient_num = ''
+    sender_num = ''
+    firebase.setURL("")
     mobile()
     while True:
         # Remove  item form cart
@@ -190,8 +190,8 @@ def main():
                     card = int.from_bytes(bytes(uid),"little",False)
                     Card=str(card)
             #get data from fb
-                    firebase.get(f"10Jae6DxJPac9eGjGPSyTwGh5O8u6fIZQX6IvX9sVMAc/Sheet1/{Card}/PRODUCT/",'data1', bg=0, id=0)
-                    firebase.get(f"10Jae6DxJPac9eGjGPSyTwGh5O8u6fIZQX6IvX9sVMAc/Sheet1/{Card}/PRICE/",'data2', bg=0, id=0)
+                    firebase.get(f"/Sheet1/{Card}/PRODUCT/",'data1', bg=0, id=0)
+                    firebase.get(f"/Sheet1/{Card}/PRICE/",'data2', bg=0, id=0)
                     product=firebase.data1 
                     price=firebase.data2
                     del dict[product]
@@ -214,8 +214,8 @@ def main():
                     card = int.from_bytes(bytes(uid),"little",False)
                     Card=str(card)
             #get data from fb
-                    firebase.get(f"10Jae6DxJPac9eGjGPSyTwGh5O8u6fIZQX6IvX9sVMAc/Sheet1/{Card}/PRODUCT/",'data1', bg=0, id=0)
-                    firebase.get(f"10Jae6DxJPac9eGjGPSyTwGh5O8u6fIZQX6IvX9sVMAc/Sheet1/{Card}/PRICE/",'data2', bg=0, id=0)
+                    firebase.get(f"/Sheet1/{Card}/PRODUCT/",'data1', bg=0, id=0)
+                    firebase.get(f"/Sheet1/{Card}/PRICE/",'data2', bg=0, id=0)
                     product=firebase.data1 
                     price=firebase.data2
                     dict[product]=price
@@ -237,7 +237,7 @@ def main():
     lcd.putstr(f'Total price: {counter}')
     lcd.move_to(0,1)
     lcd.putstr('Place smart card')
-    firebase.setURL("https://guhan-676bf-default-rtdb.firebaseio.com/")
+    firebase.setURL("/")
     while True:
         reader.init()
         (stat, tag_type) = reader.request(reader.REQIDL)
